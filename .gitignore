@@ -1,0 +1,7 @@
+vendor/
+
+# Vim
+*.swp
+
+# Visual Studio Code
+.vscode
