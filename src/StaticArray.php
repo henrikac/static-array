@@ -37,6 +37,8 @@ class StaticArray
      *
      * @param string $type
      * @param integer $size
+     * 
+     * @throws \InvalidArgumentException If type is not defined or if size is less than 0
      */
     public function __construct(string $type, int $size)
     {
