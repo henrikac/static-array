@@ -3,6 +3,7 @@
 namespace Henrikac\StaticArray;
 
 use ArrayAccess;
+use Countable;
 
 /**
  * Implementation of a static array that can only store items of a single type
@@ -10,7 +11,7 @@ use ArrayAccess;
  *
  * @author Henrik Christensen <sensen1695@hotmail.com>
  */
-class StaticArray implements ArrayAccess
+class StaticArray implements ArrayAccess, Countable
 {
     /**
      * The type of the items in the array.
@@ -58,6 +59,18 @@ class StaticArray implements ArrayAccess
 
         $this->type = $type;
         $this->size = $size;
+    }
+
+    /**
+     * Returns the current number of items in the array.
+     * 
+     * Implements {@see \Countable}
+     *
+     * @return integer
+     */
+    public function count(): int
+    {
+        return count($this->items);
     }
 
     /**
@@ -159,6 +172,11 @@ class StaticArray implements ArrayAccess
 
     /**
      * Returns the size of the array.
+     * 
+     * The size returned from this method is the max size of the array
+     * and not the number of items currently in the array.
+     * 
+     * To get the current number of items in the array use {@see count()}.
      *
      * @return integer
      */

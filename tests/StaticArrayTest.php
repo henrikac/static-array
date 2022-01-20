@@ -55,6 +55,19 @@ class StaticArrayTest extends TestCase
         new StaticArray(string::class, -1);
     }
 
+    public function testCountReturnsCorrectResult(): void
+    {
+        $arr = new StaticArray(string::class, 10);
+
+        $arr[0] = 'Alice';
+        $arr[1] = 'Bob';
+        $arr[2] = 'Eve';
+
+        unset($arr[0]);
+
+        $this->assertCount(2, $arr);
+    }
+
     public function testOffsetSetCanSetValueCorrectly(): void
     {
         $arr = new StaticArray(string::class, 3);
