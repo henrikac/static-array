@@ -68,6 +68,24 @@ class StaticArrayTest extends TestCase
         $this->assertCount(2, $arr);
     }
 
+    public function testArrayIsIterable(): void
+    {
+        $items = [1, 2, 3, 4, 5];
+        $arr = new StaticArray(int::class, count($items));
+
+        for ($i = 0; $i < count($items); $i++) {
+            $arr[$i] = $items[$i];
+        }
+
+        $counter = 0;
+
+        foreach ($arr as $a) {
+            $this->assertEquals($items[$counter++], $a);
+        }
+
+        $this->assertEquals(count($items), $counter);
+    }
+
     public function testOffsetSetCanSetValueCorrectly(): void
     {
         $arr = new StaticArray(string::class, 3);

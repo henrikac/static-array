@@ -3,7 +3,10 @@
 namespace Henrikac\StaticArray;
 
 use ArrayAccess;
+use ArrayIterator;
 use Countable;
+use IteratorAggregate;
+use Traversable;
 
 /**
  * Implementation of a static array that can only store items of a single type
@@ -11,7 +14,7 @@ use Countable;
  *
  * @author Henrik Christensen <sensen1695@hotmail.com>
  */
-class StaticArray implements ArrayAccess, Countable
+class StaticArray implements ArrayAccess, Countable, IteratorAggregate
 {
     /**
      * The type of the items in the array.
@@ -71,6 +74,16 @@ class StaticArray implements ArrayAccess, Countable
     public function count(): int
     {
         return count($this->items);
+    }
+
+    /**
+     * Implements {@see IteratorAggregate}.
+     *
+     * @return Traversable
+     */
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->items);
     }
 
     /**
