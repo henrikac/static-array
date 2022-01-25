@@ -2,19 +2,13 @@
 
 namespace Henrikac\StaticArray;
 
-use ArrayAccess;
-use ArrayIterator;
-use Countable;
-use IteratorAggregate;
-use Traversable;
-
 /**
  * Implementation of a static array that can only store items of a single type
  * and has a fixed size.
  *
  * @author Henrik Christensen <sensen1695@hotmail.com>
  */
-class StaticArray implements ArrayAccess, Countable, IteratorAggregate
+class StaticArray implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**
      * The type of the items in the array.
@@ -81,9 +75,9 @@ class StaticArray implements ArrayAccess, Countable, IteratorAggregate
      *
      * @return Traversable
      */
-    public function getIterator(): Traversable
+    public function getIterator(): \Traversable
     {
-        return new ArrayIterator($this->items);
+        return new \ArrayIterator($this->items);
     }
 
     /**
