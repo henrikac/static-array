@@ -7,6 +7,11 @@
             "Henrikac\\StaticArray\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Henrikac\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Henrik Christensen",

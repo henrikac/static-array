@@ -1,5 +1,7 @@
 <?php declare(strict_types=1);
 
+namespace Henrikac\Tests;
+
 use Henrikac\StaticArray\StaticArray;
 use PHPUnit\Framework\TestCase;
 
@@ -9,7 +11,7 @@ class StaticArrayTest extends TestCase
 {
     public function testCanInstantiateStaticArray(): void
     {
-        $arr = new StaticArray(int::class, 5);
+        $arr = new StaticArray(\int::class, 5);
 
         $this->assertNotNull($arr);
         $this->assertInstanceOf(StaticArray::class, $arr);
@@ -17,7 +19,7 @@ class StaticArrayTest extends TestCase
 
     public function testGetTypeReturnsCorrectType(): void
     {
-        $arr = new StaticArray(int::class, 5);
+        $arr = new StaticArray(\int::class, 5);
 
         $expected = 'int';
         $actual = $arr->getType();
@@ -38,7 +40,7 @@ class StaticArrayTest extends TestCase
     public function testGetSizeReturnsCorrectSize(): void
     {
         $expected = 10;
-        $arr = new StaticArray(int::class, $expected);
+        $arr = new StaticArray(\int::class, $expected);
 
         $actual = $arr->getSize();
 
@@ -52,12 +54,12 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new StaticArray(string::class, -1);
+        new StaticArray(\string::class, -1);
     }
 
     public function testCountReturnsCorrectResult(): void
     {
-        $arr = new StaticArray(string::class, 10);
+        $arr = new StaticArray(\string::class, 10);
 
         $arr[0] = 'Alice';
         $arr[1] = 'Bob';
@@ -71,7 +73,7 @@ class StaticArrayTest extends TestCase
     public function testArrayIsIterable(): void
     {
         $items = [1, 2, 3, 4, 5];
-        $arr = new StaticArray(int::class, count($items));
+        $arr = new StaticArray(\int::class, count($items));
 
         for ($i = 0; $i < count($items); $i++) {
             $arr[$i] = $items[$i];
@@ -88,7 +90,7 @@ class StaticArrayTest extends TestCase
 
     public function testOffsetSetCanSetValueCorrectly(): void
     {
-        $arr = new StaticArray(string::class, 3);
+        $arr = new StaticArray(\string::class, 3);
 
         $arr[0] = 'Alice';
         $arr[1] = 'Bob';
@@ -109,7 +111,7 @@ class StaticArrayTest extends TestCase
 
     public function testOffsetExistsReturnsTrueIfOffsetIsSet(): void
     {
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[0] = (int)4;
         $arr[1] = (int)7;
@@ -120,7 +122,7 @@ class StaticArrayTest extends TestCase
 
     public function testOffsetExistsReturnsFalseIfOffsetIsNotSet(): void
     {
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[0] = (int)4;
         $arr[1] = (int)7;
@@ -133,7 +135,7 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         isset($arr['bob']);
     }
@@ -142,14 +144,14 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\OutOfRangeException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         isset($arr[4]);
     }
 
     public function testOffsetGetReturnsCorrectValue(): void
     {
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[0] = (int)4;
         $arr[1] = (int)7;
@@ -162,7 +164,7 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[0] = (int)4;
         $arr[1] = (int)7;
@@ -175,14 +177,14 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\OutOfRangeException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[4];
     }
 
     public function testOffsetUnsetUnsetsOffset(): void
     {
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[0] = (int)4;
         $arr[1] = (int)7;
@@ -197,7 +199,7 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         $arr[] = (int)4;
         $arr[] = (int)7;
@@ -210,7 +212,7 @@ class StaticArrayTest extends TestCase
     {
         $this->expectException(\OutOfRangeException::class);
 
-        $arr = new StaticArray(int::class, 4);
+        $arr = new StaticArray(\int::class, 4);
 
         unset($arr[4]);
     }
